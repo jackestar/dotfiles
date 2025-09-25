@@ -1,0 +1,9 @@
+@@ -6,7 +6,7 @@
+ License=GPL-3.0-or-later
+ Type=sddm-theme
+ Version=1.3
+-ConfigFile=Themes/astronaut.conf
++ConfigFile=Themes/pixel_sakura-time.conf
+ Screenshot=Previews/astronaut.png
+ MainScript=Main.qml
+ TranslationsDirectory=translations

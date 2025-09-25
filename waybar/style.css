@@ -1,0 +1,150 @@
+@import url("colors.css");
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: RobotoMono Nerd, FontAwesome, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+
+window#waybar {
+    background-color: transparent;
+    border-bottom: 3px solid transparent;
+    color: @text;
+}
+
+.modules-right {
+    background-color: @peach;
+    border-radius: 100px;
+    transition: .2s ease;
+}
+
+.modules-left {
+    background-color: @green;
+    border-radius: 100px;
+    color: @crust;
+    transition: .2s ease;
+    /*overflow: hidden;*/
+}
+
+#workspaces button {
+    color: @crust;
+    background-color: @green;
+    padding: 0 5px;
+    border-radius: 100px;
+}
+
+#workspaces button:hover {
+    background-color: @sapphire;
+    transition: .2s ease;
+}
+
+#workspaces button.urgent {
+    background-color: @peach;
+    transition: .2s ease;
+}
+#workspaces button.active {
+    background-color: @teal;
+    transition: .2s ease;
+}
+
+#workspaces button.active:hover {
+    background-color: @sapphire;
+    /*border-radius: 100px;*/
+    transition: .2s ease;
+}
+
+.modules-right widget {
+    color: @crust;
+}
+
+.modules-right widget:last-child {
+    border-radius: 0 100px 100px 0;
+}
+
+.modules-right widget:first-child {
+    border-radius: 100px 0 0 100px;
+}
+
+
+.modules-right widget:nth-child(1){
+    background-color:@lavender;
+}
+
+.modules-right widget:nth-child(2){
+    background-color:@mauve;
+}
+
+.modules-right widget:nth-child(3){
+    background-color:@maroon
+}
+
+.modules-right widget:nth-child(4){
+    background-color:@yellow;
+}
+
+.modules-right widget:nth-child(5){
+    background-color:@peach;
+}
+
+.modules-right widget:nth-child(6){
+    background-color:@green;
+}
+
+.modules-right widget:nth-child(7){
+    background-color:@sky;
+}
+
+.modules-right widget:nth-child(8){
+    background-color:@sapphire;
+}
+
+.modules-right widget:nth-child(9){
+    background-color:@teal;
+}
+
+.modules-right widget:nth-child(9){
+    background-color:@teal;
+}
+
+.modules-right widget:nth-child(10){
+    background-color:@sky;
+}
+
+.modules-right widget:nth-child(11){
+    background-color:@sapphire;
+}
+
+.modules-right widget:nth-child(12){
+    background-color:@blue;
+}
+
+.modules-right widget:nth-child(13){
+    background-color:@lavender;
+}
+
+
+/*Modules individual*/
+
+#language {
+    padding: 0 5px;
+    font-size: 9px;
+    min-width: 15px;
+}
+
+#pulseaudio,#clock,#bluetooth {
+    padding: 0 7px;
+}
+
+#network,#battery {
+    padding: 0 12px 0 5px;
+}
+
+#backlight {
+    padding: 0 5px;
+    font-size: 16px;
+}
+
+/*#battery {*/
+    /*padding: 0 10px;*/
+    /*font-size: 16px;*/
+    /*margin: 0;*/
+/*}*/

@@ -1,0 +1,175 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "mode":"dock",
+    // "start_hidden":true,
+    "height": 24, // Waybar height (to be removed for auto height)
+    "spacing": 0, // Gaps between modules (4px)
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        // "mpd",
+        "pulseaudio",
+        "network",
+        "bluetooth",
+        "backlight",
+        "hyprland/language",
+        "battery",
+        "clock",
+        "tray"
+    ],
+     "hyprland/language": {
+        "format": "{}",
+        "format-en": "EN",
+        "format-es": "ES",
+        "on-click":"hyprctl switchxkblayout at-translated-set-2-keyboard next"
+    },
+    "hyprland/workspaces": {
+        "icon-size": 32,
+        "spacing": 16,
+        "format":"{icon}",
+        // "active-only":true,
+        "on-scroll-up": "hyprctl dispatch workspace r+1",
+        "on-scroll-down": "hyprctl dispatch workspace r-1",
+          "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "urgent": "",
+            // "active": "",
+            // "default": ""
+        }
+    // "format": "{windows}",
+    // "format-window-separator": "",
+    // "workspace-taskbar": {
+    //     "enable": true,
+    //     "update-active-window": true,
+    //     "format": "{icon}",
+    //     "icon-size": 18,
+    //     "on-click-window": "${SCRIPTS}/focus-window.sh {address} {button}"
+    // }
+    },
+// "mpd": {
+//     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+//     "format-disconnected": "Disconnected ",
+//     "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+//     "interval": 10,
+//     "consume-icons": {
+//         "on": " " // Icon shows only when "consume" is on
+//     },
+//     "random-icons": {
+//         "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+//         "on": " "
+//     },
+//     "repeat-icons": {
+//         "on": " "
+//     },
+//     "single-icons": {
+//         "on": "1 "
+//     },
+//     "state-icons": {
+//         "paused": "",
+//         "playing": ""
+//     },
+//     "tooltip-format": "MPD (connected)",
+//     "tooltip-format-disconnected": "MPD (disconnected)"
+// },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "spacing": 10,
+    },
+            "clock": {
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-scroll-up": "tz_up",
+                    "on-scroll-down": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up":"brightnessctl s +3%",
+        "on-scroll-down":"brightnessctl s 3%-",
+        "tooltip":false
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{capacity} {time} {icon}",
+        "tooltip-format":"{capacity}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "  ",
+            "hands-free": "  ",
+            "headset": " +",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-on": " ",
+        "format-disabled": " ",
+        "format-connected": " {num_connections}",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}\n{device_battery_percentage}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click":"rfkill toggle bluetooth"
+    }
+}

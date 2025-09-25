@@ -1,0 +1,94 @@
+@@ -217,14 +219,12 @@
+             anchors.right: rightright || rightcenter ? formBackground.left : undefined
+ 
+             horizontalAlignment: config.BackgroundHorizontalAlignment == "left" ?
+-                                 Image.AlignLeft :
+-                                 config.BackgroundHorizontalAlignment == "right" ?
+-                                 Image.AlignRight : Image.AlignHCenter
++                Image.AlignLeft : config.BackgroundHorizontalAlignment == "right" ?
++                Image.AlignRight : Image.AlignHCenter
+ 
+             verticalAlignment: config.BackgroundVerticalAlignment == "top" ?
+-                               Image.AlignTop :
+-                               config.BackgroundVerticalAlignment == "bottom" ?
+-                               Image.AlignBottom : Image.AlignVCenter
++                Image.AlignTop : config.BackgroundVerticalAlignment == "bottom" ?
++                Image.AlignBottom : Image.AlignVCenter
+ 
+             speed: config.BackgroundSpeed == "" ? 1.0 : config.BackgroundSpeed
+             paused: config.PauseBackground == "true" ? 1 : 0
+@@ -234,20 +234,66 @@
+             clip: true
+             mipmap: true
+ 
+-            Component.onCompleted:{
+-                var fileType = config.Background.substring(config.Background.lastIndexOf(".") + 1)
+-                const videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
+-                if (videoFileTypes.includes(fileType)) {
++            function pickBackground() {
++                var hour = new Date().getHours();
++
++                var base = config.Background || "";
++
++                var bg = base;
++                if (hour >= 6 && hour < 10) {
++                    bg = config.BackgroundS && config.BackgroundS !== "" ? config.BackgroundS : base;
++                } else if (hour >= 10 && hour < 17) {
++                    bg = config.BackgroundD && config.BackgroundD !== "" ? config.BackgroundD : base;
++                } else if (hour >= 17 && hour < 20) {
++                    bg = config.BackgroundS && config.BackgroundS !== "" ? config.BackgroundS : base;
++                } else {
++                    bg = config.BackgroundN && config.BackgroundN !== "" ? config.BackgroundN : base;
++                }
++
++                if (!bg || bg === "") {
++                    console.log("No background configured (bg empty).");
++                    return;
++                }
++
++                var ext = bg.substring(bg.lastIndexOf(".") + 1).toLowerCase();
++                var videoFileTypes = ["avi", "mp4", "mov", "mkv", "m4v", "webm"];
++
++                if (videoFileTypes.indexOf(ext) !== -1) {
+                     backgroundPlaceholderImage.visible = true;
+-                    player.source = Qt.resolvedUrl(config.Background)
++                    try {
++                        player.stop();
++                    } catch (e) {}
++                    player.source = Qt.resolvedUrl(bg);
+                     player.play();
++                    // clear any image source
++                    backgroundImage.source = "";
++                } else {
++                    try {
++                        player.stop();
++                        player.source = "";
++                    } catch (e) {}
++                    backgroundPlaceholderImage.visible = false;
++                    backgroundImage.source = Qt.resolvedUrl(bg);
+                 }
+-                else{
+-                    backgroundImage.source = config.background || config.Background
+-                }
++            }
++
++            Component.onCompleted: {
++                pickBackground();
++            }
++        }
++
++        Timer {
++            id: bgTimer
++            interval: 30 * 60 * 1000 // 30 minutes
++            repeat: true
++            running: true
++            onTriggered: {
++                // call the method defined on the AnimatedImage
++                backgroundImage.pickBackground();
+             }
+         }
+ 
++
+         MouseArea {
+             anchors.fill: backgroundImage
+             onClicked: parent.forceActiveFocus()

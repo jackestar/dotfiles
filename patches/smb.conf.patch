@@ -1,0 +1,43 @@
+@@ -23,10 +23,10 @@
+ [global]
+ 
+ # workgroup = NT-Domain-Name or Workgroup-Name, eg: MIDEARTH
+-   workgroup = MYGROUP
++   workgroup = JACKESTAR
+ 
+ # server string is the equivalent of the NT Description field
+-   server string = Samba Server
++   server string = Jackestar SMB
+ 
+ # Server role. Defines in which mode Samba will operate. Possible
+ # values are "standalone server", "member server", "classic primary
+@@ -84,7 +84,7 @@
+ 
+ # Windows Internet Name Serving Support Section:
+ # WINS Support - Tells the NMBD component of Samba to enable it's WINS Server
+-;   wins support = yes
++   wins support = yes
+ 
+ # WINS Server - Tells the NMBD components of Samba to be a WINS Client
+ #	Note: Samba can be either a WINS Server, or a WINS Client, but NOT both
+@@ -112,9 +112,14 @@
+ #============================ Share Definitions ==============================
+ [homes]
+    comment = Home Directories
+-   browsable = no
++   browsable = yes
+    writable = yes
+ 
++[media]
++ comment = Media Drives
++ browsable = yes
++ writable = yes
++ path = /run/media/jackestar
+ # Un-comment the following and create the netlogon directory for Domain Logons
+ ; [netlogon]
+ ;   comment = Network Logon Service
+@@ -221,3 +226,4 @@
+ ;   create mask = 0765
+ 
+ 
++

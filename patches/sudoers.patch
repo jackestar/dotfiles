@@ -1,0 +1,16 @@
+@@ -116,10 +116,15 @@
+ ## Runas alias specification
+ ##
+ 
++
++Defaults badpass_message="❌ 𝐵𝑎𝑑 𝑃𝑎𝑠𝑠"
++Defaults passprompt="🔑 𝙐𝙨𝙚𝙧 𝙋𝙖𝙨𝙨: "
++Defaults authfail_message="🚫 %d 𝑖𝑛𝑐𝑜𝑟𝑟𝑒𝑐𝑡 𝑡𝑟𝑖𝑒𝑠"
+ ##
+ ## User privilege specification
+ ##
+ root ALL=(ALL:ALL) ALL
++%wheel ALL=(ALL:ALL) ALL
+ 
+ ## Uncomment to allow members of group wheel to execute any command
+ # %wheel ALL=(ALL:ALL) ALL
