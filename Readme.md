@@ -16,6 +16,8 @@ wayland, sddm, hyprland, waybar, hyprpaper, rofi, papirus & gtk themed for catpp
 
 #### sddm
 
+https://github.com/user-attachments/assets/9487b6ab-4f17-4b67-8257-f2903ed05a44
+
 based in sddm-astronaut-theme
 
 with wallpaper that changes with the time with the catppuccin color scheme
@@ -39,3 +41,15 @@ ncourses
 ansible
 more precise hardware detection
 node thing (bun,pnpn...)
+do clear installation (remove /bin /lib ...)
+	preserve cache
+	remove/mod existing users
+network fix (chromebook and others)
+idf installation
+reboot at the end
+wine installations
+	winetricks
+	programs like ltspice
+allow users to mount windows partitions
+udev ops (avr, arduino, qdl/edl etc)
+git user/email setup

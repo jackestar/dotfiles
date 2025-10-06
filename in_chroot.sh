@@ -4,6 +4,9 @@ location="/usr/share/zoneinfo/America/Caracas"
 host=jackestar
 boot_dev=$1
 
+# git fix
+update-ca-trust
+
 ln -sf $location /etc/localtime
 hwclock --systohc
 locale-gen
@@ -13,6 +16,8 @@ echo $host > /etc/hostname
 
 echo -e "\n\e[1m\e[4mSet you root passwd\e[0m\e[0m\n"
 passwd
+# need to patch
+chsh -s /bin/zsh
 
 parent=$(lsblk -no PKNAME $boot_dev)
 mkdir /boot/EFI
@@ -79,9 +84,6 @@ patch /usr/share/sddm/themes/sddm-astronaut-theme/metadata.desktop < metadata.de
 sudo -u jackestar paru -Scc
 rm *.patch 
 
-gsettings set org.gnome.desktop.interface gtk-theme catppuccin-mocha-blue-standard+default
-gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
-
 # curl -LO https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-folders/master/papirus-folders && chmod +x ./papirus-folders
 papirus-folders -C cat-mocha-blue --theme Papirus-Dark
 # rm papirus-folders
@@ -105,3 +107,6 @@ sed -i '2ifont: "montserrat 12";' /home/$host/.config/rofi/config.rasi
 
 mkdir /home/$host/.config/hypr/
 mkdir /home/$host/.apps
+
+dbus-launch --exit-with-session gsettings set org.gnome.desktop.interface gtk-theme catppuccin-mocha-blue-standard+default
+dbus-launch --exit-with-session gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark

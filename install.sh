@@ -182,7 +182,7 @@ if grep -q "archiso" /etc/hostname; then # testpoint
     # Browsers
     installation_packages+="firefox-developer-edition firefox-developer-edition-i18n-es-mx "
     # Utility
-    installation_packages+="qbittorrent gimp inkscape kicad kicad-library kicad-library-3d lxappearance nemo nemo-fileroller pavucontrol vlc-plugins-all vlc yt-dlp gnome-disk-utility "
+    installation_packages+="qbittorrent gimp inkscape kicad kicad-library kicad-library-3d lxappearance nemo nemo-fileroller nemo-share pavucontrol vlc-plugins-all vlc yt-dlp gnome-disk-utility "
     # DEV
     installation_packages+="git github-cli pnpm npm rustup "
 
@@ -268,10 +268,15 @@ if grep -q "archiso" /etc/hostname; then # testpoint
     cp zshrc /mnt/etc/zsh/zshrc
     patch /mnt/home/$host/.zshrc < patches/zshrc.patch
 
-    echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >> /mnt/root/.zshrc
-    echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >> /mnt/home/$host/.zshrc
+    # Failed in user but not in root without \n
+    echo -e '\nsource /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >> /mnt/root/.zshrc
+    echo -e '\nsource /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >> /mnt/home/$host/.zshrc
+
+    # AVR
+    cp 01-ttyusb.rules /mnt/etc/udev/rules.d/
     
-    chown $host:$host -R /mnt/home/$host/
+    # giving ownership
+    arch-chroot /mnt chown $host:$host -R /home/$host/
 
 else
     echo -e "\e[33mOS enviroment\e[0m"

@@ -5,7 +5,7 @@
 +
 +Defaults badpass_message="❌ 𝐵𝑎𝑑 𝑃𝑎𝑠𝑠"
 +Defaults passprompt="🔑 𝙐𝙨𝙚𝙧 𝙋𝙖𝙨𝙨: "
-+Defaults authfail_message="🚫 %d 𝑖𝑛𝑐𝑜𝑟𝑟𝑒𝑐𝑡 𝑡𝑟𝑖𝑒𝑠"
++Defaults authfail_message="󰜺 %d 𝑖𝑛𝑐𝑜𝑟𝑟𝑒𝑐𝑡 𝑡𝑟𝑖𝑒𝑠"
  ##
  ## User privilege specification
  ##
